@@ -1,0 +1,52 @@
+import os
+
+class File:
+    def __init__(self, filename):
+        self.filename = filename
+        self.extension = os.path.splitext(filename)[1]
+        self.creation_time = self.get_creation_time()
+        self.last_modified_time = self.get_last_modified_time()
+
+    def get_creation_time(self):
+        return os.path.getctime(self.filename)
+
+    def get_last_modified_time(self):
+        return os.path.getmtime(self.filename)
+
+class FolderMonitor:
+    def __init__(self, folder_path):
+        self.folder_path = folder_path
+        self.files = self.scan_folder()
+
+    def scan_folder(self):
+        files = [File(os.path.join(self.folder_path, f)) for f in os.listdir(self.folder_path) if os.path.isfile(os.path.join(self.folder_path, f))]
+        return files
+
+    def detect_changes(self):
+        # Implement logic to detect changes (additions, deletions, modifications) in the folder
+        pass
+
+    def commit_snapshot(self):
+        # Update snapshot time
+        pass
+
+    def get_file_info(self, filename):
+        # Retrieve information about a specific file
+        pass
+
+    def get_all_files_info(self):
+        # Retrieve information about all files in the folder
+        pass
+
+    def get_image_files_info(self):
+        # Retrieve information about image files in the folder
+        pass
+
+    def get_text_files_info(self):
+        # Retrieve information about text files in the folder
+        pass
+
+    def get_program_files_info(self):
+        # Retrieve information about program files in the folder
+        pass
+    
